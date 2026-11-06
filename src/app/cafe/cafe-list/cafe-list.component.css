@@ -59,6 +59,12 @@
   width: 30%;
 }
 
+.coffee-totals p {
+  font-size: 1rem;
+  color: #212529;
+  margin-left: 0.15rem;
+}
+
 .contact-info {
   color: #212529;
   font-size: 0.95rem;
