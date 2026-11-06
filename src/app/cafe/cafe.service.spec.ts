@@ -41,3 +41,4 @@ describe('CafeService', () => {
     req.flush(mockCafes);
   });
 });
+

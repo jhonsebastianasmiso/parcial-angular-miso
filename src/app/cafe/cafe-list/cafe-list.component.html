@@ -1,0 +1,45 @@
+<div class="container my-4">
+  <!-- Encabezado con título de la tienda -->
+  <header class="mb-4">
+    <h1 class="store-title">El aroma mágico</h1>
+    <hr class="header-divider" />
+  </header>
+
+  <!-- Banner de café -->
+  <section class="mb-4 text-center">
+    <img
+      src="banner.png"
+      alt="El aroma mágico banner"
+      class="img-fluid banner-img shadow-sm"
+    />
+  </section>
+
+  <!-- Tabla de variedades de café -->
+  <section class="table-responsive my-4">
+    <table class="table cafe-table align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col" class="col-id">#</th>
+          <th scope="col" class="col-nombre">Nombre</th>
+          <th scope="col" class="col-tipo">Tipo</th>
+          <th scope="col" class="col-region">Región</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cafe of cafes">
+          <th scope="row" class="fw-bold">{{ cafe.id }}</th>
+          <td>{{ cafe.nombre }}</td>
+          <td>{{ cafe.tipo }}</td>
+          <td>{{ cafe.region }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Pie de página con información de contacto -->
+  <footer class="text-center mt-5 pt-3">
+    <p class="contact-info">
+      Contact us: +57 3102105253 - info@elaromamagico.com - @elaromamagico
+    </p>
+  </footer>
+</div>

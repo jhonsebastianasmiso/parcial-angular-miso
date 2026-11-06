@@ -16,3 +16,4 @@ export class CafeService {
     return this.http.get<Cafe[]>(this.apiUrl);
   }
 }
+
