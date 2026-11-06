@@ -1,59 +1,49 @@
-# ParcialAngular
+# MISW-4104: Evaluación Práctica Angular - El aroma mágico
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.6.
+Este proyecto implementa la evaluación práctica de Angular para el curso **MISW-4104: Ingeniería de Software para Aplicaciones Web** (Maestría en Ingeniería de Software - MISO, Universidad de los Andes).
 
-## Development server
+## ☕ Descripción de la Aplicación
+La aplicación despliega el catálogo de variedades de café de la tienda **"El aroma mágico"**, consumiendo de forma asíncrona un listado desde GitHub Gist, presentándolo en una tabla estilizada con Bootstrap 5 y calculando dinámicamente las cantidades según su variedad.
 
-To start a local development server, run:
+---
 
+## 🏛️ Arquitectura y Componentes
+1. **Módulo `CafeModule` (`src/app/cafe/cafe.module.ts`):** Módulo desacoplado importado en `AppModule` con exportación de componentes.
+2. **Modelo `Cafe` (`src/app/cafe/cafe.ts`):** Clase de datos con sus 7 atributos tipados (`id`, `nombre`, `tipo`, `region`, `sabor`, `altura`, `imagen`) y constructor.
+3. **Servicio `CafeService` (`src/app/cafe/cafe.service.ts`):** Servicio inyectable que consulta vía HTTP el endpoint oficial mediante `HttpClient` y retorna un `Observable<Cafe[]>`.
+4. **Componente `CafeListComponent` (`src/app/cafe/cafe-list/`):**
+   * Encabezado con título *"El aroma mágico"* y banner recortado de la tienda.
+   * Tabla responsive de Bootstrap (`table-dark`) mostrando `#`, `Nombre`, `Tipo` y `Región`.
+   * **Conteo dinámico:** Cálculo en tiempo de ejecución de las variedades de café de origen (`totalCafeOrigen`) y café blend (`totalCafeBlend`).
+   * **Detección de cambios inmediata:** Uso de `ChangeDetectorRef.detectChanges()` para garantizar la actualización inmediata del DOM al resolver la respuesta asíncrona del servicio.
+   * Pie de página con información de contacto.
+
+---
+
+## 🚀 Ejecución del Proyecto
+
+### 1. Servidor de desarrollo
+Para iniciar el servidor local de desarrollo:
 ```bash
-ng serve
+npm start
+# o: ng serve
+```
+Navega a `http://localhost:4200/`. La aplicación se recargará automáticamente ante cualquier cambio.
+
+### 2. Pruebas Automatizadas
+Para ejecutar la suite completa de pruebas unitarias y de integración:
+```bash
+npm test -- --watch=false
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Las suites validan:
+* Creación de componentes y servicios.
+* Inyección y simulación de peticiones HTTP con `HttpClientTestingModule`.
+* Verificación de la creación de la tabla con **3 filas de datos más 1 fila de encabezado** (4 filas `<tr>` en total en el DOM).
+* Despliegue correcto de los atributos en cada columna y cálculo dinámico de variedades.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+### 3. Compilación para Producción
 ```bash
-ng generate component component-name
+npm run build
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Genera los artefactos optimizados en la carpeta `dist/`.
