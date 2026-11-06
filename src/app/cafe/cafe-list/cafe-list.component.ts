@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Cafe } from '../cafe';
 import { CafeService } from '../cafe.service';
 
@@ -13,13 +13,17 @@ export class CafeListComponent implements OnInit {
   totalCafeOrigen: number = 0;
   totalCafeBlend: number = 0;
 
-  constructor(private cafeService: CafeService) { }
+  constructor(
+    private cafeService: CafeService,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   getCafes(): void {
     this.cafeService.getCafes().subscribe({
       next: (cafes) => {
         this.cafes = cafes;
         this.calcularTotalesPorTipo(cafes);
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Error al obtener la lista de cafés', err);
